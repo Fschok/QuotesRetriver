@@ -1,5 +1,3 @@
-import os
-
 import tweepy
 
 
@@ -31,11 +29,6 @@ class TwittaStream(tweepy.StreamingClient):
     def __int__(self, token):
         super().__init__(token)
         self.twita_client = Twitta(token)
-
-    def on_connect(self):
-        rules = tweepy.StreamRule("to:{}".format(self.twita_client.user_at),
-                                  "is:reply",)
-        self.add_rules(rules)
 
     def on_tweet(self, tweet):
         self.twita_client.send_tweet(tweet)
